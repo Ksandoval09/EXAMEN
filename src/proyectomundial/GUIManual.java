@@ -60,6 +60,9 @@ public class GUIManual extends JFrame {
     private JPanel jPanelLabelTop;
     private JLabel jLabelTop;
     
+    private JPanel jpanelMenuSesion;
+    private JLabel btnSesion;
+    
     private JPanel jPanelMain;
     
     private boolean haySesion;
@@ -68,7 +71,7 @@ public class GUIManual extends JFrame {
     
     public GUIManual() {
         
-        // Cuando inicia el programa no hay sesion avctiva
+        // Cuando inicia el programa no hay sesion activa
         haySesion = false;   
         
         // Lista de usuarios habilitados para iniciar sesión en el sistema
@@ -88,6 +91,8 @@ public class GUIManual extends JFrame {
         usuarios[4][0] = "usuario5";
         usuarios[4][1] = "Password5";
         
+        
+        
         // Se inician los componentes gráficos
         initComponents();
         
@@ -99,6 +104,75 @@ public class GUIManual extends JFrame {
         // Se llama la función home para que al momento de iniciar la aplicacoón, por defecto se muestre el home
         accionHome();
         
+        
+        while (true) {
+            int opcion = mostrarMenu(haySesion);
+            
+            switch (opcion) {
+                case 1:
+                    if (haySesion) {
+                        JOptionPane.showMessageDialog(null, "Ya hay una sesión iniciada.");
+                    } else {
+                        iniciarSesion(usuarios, haySesion);
+                    }
+                    break;
+                case 2:
+                    if (haySesion) {
+                        JOptionPane.showMessageDialog(null, "Opción 2: Acción disponible para usuarios con sesión iniciada.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe iniciar sesión para acceder a esta opción.");
+                    }
+                    break;
+                case 3:
+                    if (haySesion) {
+                        JOptionPane.showMessageDialog(null, "Opción 3: Acción disponible para usuarios con sesión iniciada.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe iniciar sesión para acceder a esta opción.");
+                    }
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, "Saliendo del programa...");
+                    System.exit(0);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción inválida.");
+                    break;
+            }
+        }
+    }
+    
+    public static int mostrarMenu(boolean haySesion) {
+        String mensaje = "Menú\n";
+        mensaje += "1. Sesión\n";
+        mensaje += "2. Opción 2\n";
+        mensaje += "3. Opción 3\n";
+        mensaje += "4. Salir\n";
+        
+        if (haySesion) {
+            mensaje += "Opciones bloqueadas habilitadas.\n";
+        } else {
+            mensaje += "Opciones bloqueadas deshabilitadas.\n";
+        }
+        
+        String opcionStr = JOptionPane.showInputDialog(null, mensaje + "Ingrese el número de la opción:");
+        int opcion = Integer.parseInt(opcionStr);
+        return opcion;
+    }
+    
+    public static void iniciarSesion(String[][] usuarios, boolean haySesion) {
+        String usuario = JOptionPane.showInputDialog(null, "Ingrese el usuario:");
+        String contraseña = JOptionPane.showInputDialog(null, "Ingrese la contraseña:");
+        
+        for (int i = 0; i < usuarios.length; i++) {
+            if (usuarios[i][0].equals(usuario) && usuarios[i][1].equals(contraseña)) {
+                haySesion = true;
+                JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso.");
+                return;
+            }
+        }
+        
+        JOptionPane.showMessageDialog(null, "Credenciales incorrectas. No se pudo iniciar sesión.");
+     
     }
     
     
@@ -126,6 +200,9 @@ public class GUIManual extends JFrame {
         jPanelMenuDashboardRes = new JPanel();
         btnDashboardRes = new JLabel();
         
+        jpanelMenuSesion = new JPanel();
+        btnSesion = new JLabel();
+        
         // Pinta el logo de la aplicación
         pintarLogo();
         
@@ -146,6 +223,8 @@ public class GUIManual extends JFrame {
         
         // Pinta y ajuste diseño del contenedor del panel izquierdo
         pintarPanelIzquierdo();
+        
+        
         
         
         
@@ -754,4 +833,8 @@ public class GUIManual extends JFrame {
             }
         });
     }
+
+    
+       
+    
 }
