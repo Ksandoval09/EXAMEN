@@ -1,1 +1,17 @@
 KEVIN ALEXANDER SANDOVAL DURAN 
+
+Kevin, la solución no es funcional porque pasó la variable haySesión cómo parámetro de los métodos. 
+Esto no era necesario porque la variable estaba definida cómo global y esto afecta la solución 
+
+La variable que está quedando en true no es la variable global sino la variable que está llegando cómo parámetro en el método. 
+Por esta razón la sesión nunca llega a ser válida. 
+
+----- 
+
+Tiene muchas cosas por mejorar. Conoce los concetps, pero tiene todavía que seguir trabajando en la lógica de programación. 
+Esto solo se puede hacer si práctica. Haga ejercicios usted mismo, sientese en el computador y trate de sacar usted mismo la solución, sin la ayuda de ninguna herramienta de IA.
+
+Mientras se siga apoyando en este tipo de herramientas sin hacer el esfuerzo de solucionarlo con su propia capacidad no va a lograr los resultados que quiere. 
+Dee sto va a depender el tipo de profesional que quiere ser mañana. 
+
+Mucho ánimo. Está a tiempo de cambiar su futuro
